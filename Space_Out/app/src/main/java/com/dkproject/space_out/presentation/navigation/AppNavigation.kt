@@ -36,6 +36,7 @@ fun AppNavigation(
 
     NavHost(navController = navController, startDestination = AppDestinations.Screen.Sound) {
         composable<AppDestinations.Screen.Sound> {
+            activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR
             when(windowWidthSizeClass) {
                 WindowWidthSizeClass.Compact, WindowWidthSizeClass.Medium -> {
                     SoundCompactScreen(
@@ -59,9 +60,8 @@ fun AppNavigation(
             val video: AppDestinations.Screen.Video = backStackEntry.toRoute()
             val path = "android.resource://${context.packageName}/${video.path}"
             val viewModel: VideoViewModel = hiltViewModel()
-            VideoScreen(videoUri = path, viewModel = viewModel, windowWidthSizeClass = windowWidthSizeClass,
+            VideoScreen(videoUri = path, viewModel = viewModel,
                 soundUiState = uiState, updateVolume = audioViewModel::playOrUpdateSound) {
-                activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR
                 navController.popBackStack()
             }
         }
