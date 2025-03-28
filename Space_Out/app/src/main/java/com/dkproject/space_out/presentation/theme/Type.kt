@@ -1,4 +1,4 @@
-package com.dkproject.space_out.ui.theme
+package com.dkproject.space_out.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
