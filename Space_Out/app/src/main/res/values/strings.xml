@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Space_Out</string>
+    <string name="fire">Fire</string>
+    <string name="forest">Forest</string>
+    <string name="ocean">Ocean</string>
+    <string name="wave">Wave</string>
+    <string name="snow">Snow</string>
+    <string name="star">Star</string>
+    <string name="sun">Sun</string>
+    <string name="tree">Tree</string>
+    <string name="universe">universe</string>
+    <string name="rain">Rain</string>
+    <string name="wind">Wind</string>
+    <string name="creek">Creek</string>
+    <string name="bird">Bird</string>
+    <string name="keyboard">Keyboard</string>
 </resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Space_Out</string>
+    <string name="fire">불</string>
+    <string name="forest">숲</string>
+    <string name="ocean">바다</string>
+    <string name="wave">파도</string>
+    <string name="snow">눈</string>
+    <string name="star">별</string>
+    <string name="sun">햇빛</string>
+    <string name="tree">나무</string>
+    <string name="universe">우주</string>
+    <string name="rain">비</string>
+    <string name="wind">바람</string>
+    <string name="creek">냇가</string>
+    <string name="bird">새</string>
+    <string name="keyboard">키보드</string>
+</resources>
