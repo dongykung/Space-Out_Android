@@ -42,7 +42,7 @@ fun SoundExpandScreen(
     var isVideoSheet by remember { mutableStateOf(false) }
     val configuration = LocalConfiguration.current
     val screenHeightDp = configuration.screenHeightDp.dp / 3f
-    val gridItemHeight = screenHeightDp.value.dp / 1.5f
+    val gridItemHeight = screenHeightDp.value.dp / 1.2f
 
 
     Row(
@@ -69,12 +69,12 @@ fun SoundExpandScreen(
             )
         }
         LazyHorizontalGrid(rows = GridCells.Fixed(2),
-            verticalArrangement = Arrangement.spacedBy(32.dp), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+            verticalArrangement = Arrangement.spacedBy(16.dp), horizontalArrangement = Arrangement.spacedBy(16.dp)) {
             items(uiState.soundList) { sound ->
                 SoundItem(
                     modifier = Modifier.width(screenHeightDp).height(screenHeightDp),
                     sound = sound,
-                    circleRadius = gridItemHeight.value,
+                    circleRadius = gridItemHeight.value.coerceAtMost(180f),
                     updateVolume = updateVolume
                 )
             }
