@@ -3,6 +3,7 @@ package com.dkproject.space_out.presentation.ui.sound
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -130,9 +131,10 @@ fun SoundItem(
         ) { vol ->
             updateVolume(sound.fileName, vol)
         }
+        Spacer(modifier = Modifier.height(4.dp))
         Text(
             text = stringResource(sound.soundName),
-            style = MaterialTheme.typography.titleMedium,
+            style = MaterialTheme.typography.titleLarge,
             color = Color.White
         )
     }
