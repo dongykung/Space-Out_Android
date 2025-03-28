@@ -1,12 +1,21 @@
 package com.dkproject.space_out.presentation.Component
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.animateIntAsState
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -24,9 +33,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.min
+import com.dkproject.space_out.R
 import com.dkproject.space_out.presentation.theme.Space_OutTheme
 import kotlin.math.PI
 import kotlin.math.atan2
@@ -46,6 +58,8 @@ fun CircleSlider(
     circleRadius: Float,
     onPositionChange: (Int) -> Unit
 ) {
+    var tes = animateFloatAsState(targetValue = initialValue / 100f)
+
     // 원 중심 좌표
     var circleCenter by remember {
         mutableStateOf(Offset.Zero)
@@ -120,19 +134,6 @@ fun CircleSlider(
             val circleThickness = width / 25f
             circleCenter = Offset(x = width/2f, y = height/2f)
 
-
-            drawCircle(
-                brush = Brush.radialGradient(
-                    listOf(
-                        primaryColor.copy(0.45f),
-                        secondaryColor.copy(0.15f)
-                    )
-                ),
-                radius = circleRadius,
-                center = circleCenter
-            )
-
-
             drawCircle(
                 style = Stroke(
                     width = circleThickness
@@ -175,7 +176,29 @@ fun CircleSlider(
                 radius = handleRadius
             )
         }
-        Text("$initialValue")
+        AnimatedVisibility(initialValue > 0,
+            enter = fadeIn(),
+            exit = fadeOut()
+        ) {
+            Image(
+                painter = painterResource(R.drawable.testfireon),
+                null,
+                modifier = Modifier.size((circleRadius * 0.5).dp),
+                contentScale = ContentScale.Crop,
+                alpha = if(tes.value < 0.2f) 0.2f else tes.value
+                )
+        }
+        AnimatedVisibility(initialValue == 0,
+            enter = fadeIn(),
+            exit = fadeOut()
+        ) {
+            Image(
+                painter = painterResource(R.drawable.testfireoff),
+                null,
+                modifier = Modifier.size((circleRadius * 0.5).dp),
+                contentScale = ContentScale.Crop,
+            )
+        }
     }
 }
 
