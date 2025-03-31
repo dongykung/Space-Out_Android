@@ -26,4 +26,5 @@
     <string name="heart">Heart</string>
     <string name="scissor">Scissor</string>
     <string name="subtitle">Heal with the sounds of nature</string>
+    <string name="notificationtext">Healing Mind app is running</string>
 </resources>
