@@ -1,6 +1,6 @@
 [versions]
 agp = "8.7.3"
-kotlin = "2.0.0"
+kotlin = "2.0.21"
 coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -8,9 +8,25 @@ espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.10.1"
 composeBom = "2024.04.01"
+media3Exoplayer = "1.5.1"
+navigation = "2.8.6"
+
+hilt = "2.51.1"
+hilt-navigation = "1.2.0"
+serialization = "2.0.21"
+serialization-json = "1.7.3"
+
+accompanistPermissions = "0.36.0"
+media3Session = "1.6.0"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycleRuntimeKtx" }
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleRuntimeKtx" }
+androidx-media3-exoplayer = { module = "androidx.media3:media3-exoplayer", version.ref = "media3Exoplayer" }
+androidx-media3-exoplayer-dash = { module = "androidx.media3:media3-exoplayer-dash", version.ref = "media3Exoplayer" }
+androidx-media3-ui = { module = "androidx.media3:media3-ui", version.ref = "media3Exoplayer" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -25,8 +41,25 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 
+dagger-hilt-android = {group = "com.google.dagger", name = "hilt-android", version.ref = "hilt"}
+hilt-compiler = {group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt"}
+android-hilt-navigation = {group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-navigation"}
+
+androidx-windowSize = {group = "androidx.compose.material3", name = "material3-window-size-class"}
+androidx-icons-extended = {group = "androidx.compose.material", name = "material-icons-extended"}
+
+serialization-json = {group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization-json"}
+
+androidx-navigation = {group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation"}
+androidx-navigation-test = {group = "androidx.navigation", name = "navigation-testing", version.ref = "navigation"}
+accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
+androidx-media3-session = { group = "androidx.media3", name = "media3-session", version.ref = "media3Session" }
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+dagger-hilt-root = {id = "com.google.dagger.hilt.android", version.ref = "hilt"}
+ksp = {id = "com.google.devtools.ksp"}
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+dagger-hilt = {id = "com.google.dagger.hilt.android"}
+kotlin-serialization = {id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "serialization"}
 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">힐링 마인드</string>
+    <string name="fire">불</string>
+    <string name="forest">숲</string>
+    <string name="ocean">바다</string>
+    <string name="wave">파도</string>
+    <string name="snow">눈</string>
+    <string name="star">별</string>
+    <string name="sun">햇빛</string>
+    <string name="tree">나무</string>
+    <string name="universe">우주</string>
+    <string name="rain">비</string>
+    <string name="wind">바람</string>
+    <string name="creek">냇가</string>
+    <string name="bird">새</string>
+    <string name="keyboard">키보드</string>
+    <string name="midnight">한밤</string>
+    <string name="oceancalm">잔잔한 바다</string>
+    <string name="coralreef">산호빛 바다</string>
+    <string name="monochrome">모노톤</string>
+    <string name="pastel">파스텔</string>
+    <string name="galaxynight">퍼플</string>
+    <string name="deepOncean">심해</string>
+    <string name="themechange">테마를 %s으로 변경했습니다.</string>
+    <string name="themechangefail">테마 변경에 실패했습니다.</string>
+    <string name="heart">심장박동</string>
+    <string name="scissor">가위</string>
+    <string name="subtitle">자연의 소리로 힐링하세요</string>
+    <string name="notificationtext">힐링 마인드 앱이 실행 중입니다</string>
+</resources>

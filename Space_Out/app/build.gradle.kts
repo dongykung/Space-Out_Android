@@ -1,17 +1,40 @@
+import com.google.protobuf.gradle.id
+import org.gradle.internal.extensions.stdlib.capitalized
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.dagger.hilt)
+    alias(libs.plugins.kotlin.serialization)
+    id("com.google.protobuf") version "0.9.1"
 }
+protobuf {
+    protoc {
+        // The artifact spec for the Protobuf Compiler
+        artifact = "com.google.protobuf:protoc:3.19.4"
+    }
 
+    generateProtoTasks {
+        all().forEach { tasks ->
+            tasks.builtins {
+                id("java") {
+                    option("lite")
+                }
+            }
+        }
+    }
+}
 android {
     namespace = "com.dkproject.space_out"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.dkproject.space_out"
-        minSdk = 24
-        targetSdk = 34
+        minSdk = 26
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -28,18 +51,56 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
     }
+
+}
+androidComponents {
+    onVariants(selector().all()) { variant ->
+        afterEvaluate {
+            val capName = variant.name.capitalized()
+            tasks.getByName<KotlinCompile>("ksp${capName}Kotlin") {
+                setSource(tasks.getByName("generate${capName}Proto").outputs)
+            }
+        }
+    }
 }
 
 dependencies {
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation (libs.androidx.lifecycle.runtime.compose)
+
+    implementation(libs.android.hilt.navigation)
+    implementation(libs.dagger.hilt.android)
+    ksp(libs.hilt.compiler)
+
+    implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.androidx.media3.exoplayer.dash)
+    implementation(libs.androidx.media3.ui)
+    implementation(libs.androidx.media3.session)
+
+    implementation(libs.androidx.windowSize)
+    implementation(libs.androidx.icons.extended)
+
+    //serialization
+    implementation(libs.serialization.json)
+
+    //navigation
+    implementation(libs.androidx.navigation)
+
+    //Accompanist
+    implementation(libs.accompanist.permissions)
+
+    implementation ("androidx.datastore:datastore:1.1.4")
+    implementation ("com.google.protobuf:protobuf-javalite:3.21.12")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -57,3 +118,5 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }
+
+
