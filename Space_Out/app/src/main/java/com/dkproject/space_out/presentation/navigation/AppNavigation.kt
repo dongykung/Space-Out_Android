@@ -1,8 +1,10 @@
 package com.dkproject.space_out.presentation.navigation
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.os.Build
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.fillMaxSize
@@ -37,9 +39,15 @@ import com.dkproject.space_out.presentation.ui.sound.SoundUiEvent
 import com.dkproject.space_out.presentation.ui.splash.SplashView
 import com.dkproject.space_out.presentation.ui.video.VideoScreen
 import com.dkproject.space_out.presentation.ui.video.VideoViewModel
+import com.dkproject.space_out.service.AudioService
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.PermissionStatus
+import com.google.accompanist.permissions.isGranted
+import com.google.accompanist.permissions.rememberPermissionState
 import kotlinx.coroutines.flow.map
 import kotlinx.serialization.Serializable
 
+@OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun AppNavigation(
     navController: NavHostController,
@@ -74,6 +82,18 @@ fun AppNavigation(
         }
         composable<AppDestinations.Screen.Sound> {
             activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                val notificationPermissionState = rememberPermissionState(Manifest.permission.POST_NOTIFICATIONS)
+                LaunchedEffect(notificationPermissionState.status) {
+                    when(notificationPermissionState.status) {
+                        is PermissionStatus.Denied -> { notificationPermissionState.launchPermissionRequest() }
+                        PermissionStatus.Granted -> {
+                            Log.d("NotificationPermission", "Granted")
+                            context.startForegroundService(Intent(context, AudioService::class.java))
+                        }
+                    }
+                }
+            }
             when (windowWidthSizeClass) {
                 WindowWidthSizeClass.Compact, WindowWidthSizeClass.Medium -> {
                     SoundCompactScreen(
