@@ -17,6 +17,7 @@ serialization = "2.0.21"
 serialization-json = "1.7.3"
 
 accompanistPermissions = "0.36.0"
+media3Session = "1.6.0"
 
 
 [libraries]
@@ -52,6 +53,7 @@ serialization-json = {group = "org.jetbrains.kotlinx", name = "kotlinx-serializa
 androidx-navigation = {group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation"}
 androidx-navigation-test = {group = "androidx.navigation", name = "navigation-testing", version.ref = "navigation"}
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
+androidx-media3-session = { group = "androidx.media3", name = "media3-session", version.ref = "media3Session" }
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
