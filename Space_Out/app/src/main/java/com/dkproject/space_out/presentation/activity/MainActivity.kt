@@ -1,5 +1,6 @@
 package com.dkproject.space_out.presentation.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -17,6 +18,7 @@ import androidx.navigation.compose.rememberNavController
 import com.dkproject.space_out.presentation.navigation.AppNavigation
 import com.dkproject.space_out.presentation.theme.Space_OutTheme
 import com.dkproject.space_out.presentation.ui.sound.AudioViewModel
+import com.dkproject.space_out.service.AudioService
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -43,6 +45,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        stopService(Intent(this, AudioService::class.java))
     }
 }
 
