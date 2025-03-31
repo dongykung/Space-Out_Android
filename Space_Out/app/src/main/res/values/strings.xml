@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Space_Out</string>
+    <string name="app_name">Healing Mind</string>
     <string name="fire">Fire</string>
     <string name="forest">Forest</string>
     <string name="ocean">Ocean</string>
@@ -14,4 +14,16 @@
     <string name="creek">Creek</string>
     <string name="bird">Bird</string>
     <string name="keyboard">Keyboard</string>
+    <string name="midnight">Midnight</string>
+    <string name="oceancalm">OceanCalm</string>
+    <string name="coralreef">CoralReef</string>
+    <string name="monochrome">Monochrome</string>
+    <string name="pastel">Pastel</string>
+    <string name="galaxynight">GalaxyNight</string>
+    <string name="deepOncean">DeepOceaen</string>
+    <string name="themechange">Changed the theme to %s.</string>
+    <string name="themechangefail">Failed to change the theme.</string>
+    <string name="heart">Heart</string>
+    <string name="scissor">Scissor</string>
+    <string name="subtitle">Heal with the sounds of nature</string>
 </resources>

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "com.dkproject.space_out";
+option java_multiple_files = true;
+
+message ThemeSetting {
+  int32 primary_color = 1;
+  int32 slider_empty_color = 2;
+  int32 slider_fill_color = 3;
+  repeated int32 theme_color_list = 4;
+}

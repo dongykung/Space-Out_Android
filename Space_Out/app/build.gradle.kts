@@ -1,3 +1,7 @@
+import com.google.protobuf.gradle.id
+import org.gradle.internal.extensions.stdlib.capitalized
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -5,8 +9,24 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.dagger.hilt)
     alias(libs.plugins.kotlin.serialization)
+    id("com.google.protobuf") version "0.9.1"
 }
+protobuf {
+    protoc {
+        // The artifact spec for the Protobuf Compiler
+        artifact = "com.google.protobuf:protoc:3.19.4"
+    }
 
+    generateProtoTasks {
+        all().forEach { tasks ->
+            tasks.builtins {
+                id("java") {
+                    option("lite")
+                }
+            }
+        }
+    }
+}
 android {
     namespace = "com.dkproject.space_out"
     compileSdk = 35
@@ -31,14 +51,25 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
+    }
+
+}
+androidComponents {
+    onVariants(selector().all()) { variant ->
+        afterEvaluate {
+            val capName = variant.name.capitalized()
+            tasks.getByName<KotlinCompile>("ksp${capName}Kotlin") {
+                setSource(tasks.getByName("generate${capName}Proto").outputs)
+            }
+        }
     }
 }
 
@@ -63,6 +94,12 @@ dependencies {
 
     //navigation
     implementation(libs.androidx.navigation)
+
+    //appcompat
+    implementation(libs.androidx.appcompat)
+    
+    implementation ("androidx.datastore:datastore:1.1.4")
+    implementation ("com.google.protobuf:protobuf-javalite:3.21.12")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
