@@ -26,6 +26,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.dkproject.space_out.presentation.theme.Space_OutTheme
+import com.dkproject.space_out.presentation.theme.bottomSheetBackground
 import com.dkproject.space_out.presentation.util.VideoUtil
 
 @Composable
@@ -36,7 +37,7 @@ fun SelectVideoBottomSheet(
     val configuration = LocalConfiguration.current
     val screenHeightDp = configuration.screenHeightDp.dp
     val gridItemSize = screenHeightDp / 6.5f
-    Column(modifier = modifier.background(Color(0XFF111722))) {
+    Column(modifier = modifier.background(bottomSheetBackground)) {
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             horizontalArrangement =
@@ -51,7 +52,8 @@ fun SelectVideoBottomSheet(
                         Image(
                             painter = painterResource(video.thumbnail),
                             contentDescription = null,
-                            contentScale = ContentScale.Crop
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier.fillMaxSize()
                         )
                     }
                     Text(
