@@ -1,6 +1,5 @@
-package com.dkproject.space_out.ui.theme
+package com.dkproject.space_out.presentation.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
