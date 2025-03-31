@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Space_Out</string>
+    <string name="app_name">힐링 마인드</string>
     <string name="fire">불</string>
     <string name="forest">숲</string>
     <string name="ocean">바다</string>
@@ -15,4 +15,16 @@
     <string name="creek">냇가</string>
     <string name="bird">새</string>
     <string name="keyboard">키보드</string>
+    <string name="midnight">한밤</string>
+    <string name="oceancalm">잔잔한 바다</string>
+    <string name="coralreef">산호빛 바다</string>
+    <string name="monochrome">모노톤</string>
+    <string name="pastel">파스텔</string>
+    <string name="galaxynight">퍼플</string>
+    <string name="deepOncean">심해</string>
+    <string name="themechange">테마를 %s으로 변경했습니다.</string>
+    <string name="themechangefail">테마 변경에 실패했습니다.</string>
+    <string name="heart">심장박동</string>
+    <string name="scissor">가위</string>
+    <string name="subtitle">자연의 소리로 힐링하세요</string>
 </resources>
