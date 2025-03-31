@@ -1,5 +1,6 @@
 package com.dkproject.space_out.presentation.Component
 
+import androidx.annotation.DrawableRes
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.animateIntAsState
@@ -56,6 +57,8 @@ fun CircleSlider(
     minValue: Int = 0,
     maxValue: Int = 100,
     circleRadius: Float,
+    @DrawableRes offImage: Int,
+    @DrawableRes onImage: Int,
     onPositionChange: (Int) -> Unit
 ) {
     var tes = animateFloatAsState(targetValue = initialValue / 100f)
@@ -176,29 +179,35 @@ fun CircleSlider(
                 radius = handleRadius
             )
         }
-        AnimatedVisibility(initialValue > 0,
-            enter = fadeIn(),
-            exit = fadeOut()
-        ) {
-            Image(
-                painter = painterResource(R.drawable.testfireon),
-                null,
-                modifier = Modifier.size((circleRadius * 0.5).dp),
-                contentScale = ContentScale.Crop,
-                alpha = if(tes.value < 0.2f) 0.2f else tes.value
-                )
-        }
-        AnimatedVisibility(initialValue == 0,
-            enter = fadeIn(),
-            exit = fadeOut()
-        ) {
-            Image(
-                painter = painterResource(R.drawable.testfireoff),
-                null,
-                modifier = Modifier.size((circleRadius * 0.5).dp),
-                contentScale = ContentScale.Crop,
-            )
-        }
+        SoundFlameIcon(
+            volume = initialValue,
+            modifier = Modifier.size((circleRadius * 0.5).dp),
+            onIcon = painterResource(onImage),
+            offIcon = painterResource(offImage)
+        )
+//        AnimatedVisibility(initialValue > 0,
+//            enter = fadeIn(),
+//            exit = fadeOut()
+//        ) {
+//            Image(
+//                painter = painterResource(onImage),
+//                null,
+//                modifier = Modifier.size((circleRadius * 0.5).dp),
+//                contentScale = ContentScale.Crop,
+//                alpha = if(tes.value < 0.2f) 0.2f else tes.value
+//                )
+//        }
+//        AnimatedVisibility(initialValue == 0,
+//            enter = fadeIn(),
+//            exit = fadeOut()
+//        ) {
+//            Image(
+//                painter = painterResource(offImage),
+//                null,
+//                modifier = Modifier.size((circleRadius * 0.5).dp),
+//                contentScale = ContentScale.Crop,
+//            )
+//        }
     }
 }
 
@@ -211,6 +220,8 @@ private fun CircleSliderPreview() {
             CircleSlider(
                 modifier = Modifier.size(150.dp),
                 initialValue = 67,
+                offImage = R.drawable.fireoff,
+                onImage = R.drawable.fireon,
                 primaryColor = Color.Green,
                 secondaryColor = Color.LightGray,
                 circleRadius = 150f,
