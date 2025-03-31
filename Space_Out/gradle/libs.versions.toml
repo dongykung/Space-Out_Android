@@ -16,7 +16,7 @@ hilt-navigation = "1.2.0"
 serialization = "2.0.21"
 serialization-json = "1.7.3"
 
-appcompat = "1.7.0"
+accompanistPermissions = "0.36.0"
 
 
 [libraries]
@@ -51,7 +51,7 @@ serialization-json = {group = "org.jetbrains.kotlinx", name = "kotlinx-serializa
 
 androidx-navigation = {group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation"}
 androidx-navigation-test = {group = "androidx.navigation", name = "navigation-testing", version.ref = "navigation"}
-androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

@@ -95,9 +95,9 @@ dependencies {
     //navigation
     implementation(libs.androidx.navigation)
 
-    //appcompat
-    implementation(libs.androidx.appcompat)
-    
+    //Accompanist
+    implementation(libs.accompanist.permissions)
+
     implementation ("androidx.datastore:datastore:1.1.4")
     implementation ("com.google.protobuf:protobuf-javalite:3.21.12")
 
@@ -117,3 +117,5 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }
+
+
