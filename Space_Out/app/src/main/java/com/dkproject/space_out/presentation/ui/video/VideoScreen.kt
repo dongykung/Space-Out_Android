@@ -61,6 +61,7 @@ import androidx.media3.ui.AspectRatioFrameLayout
 import androidx.media3.ui.PlayerView
 import com.dkproject.space_out.R
 import com.dkproject.space_out.presentation.Component.SelectVideoBottomSheet
+import com.dkproject.space_out.presentation.model.ThemeData
 import com.dkproject.space_out.presentation.ui.sound.SoundCompactListView
 import com.dkproject.space_out.presentation.ui.sound.SoundItem
 import com.dkproject.space_out.presentation.ui.sound.SoundUiState
@@ -73,6 +74,7 @@ fun VideoScreen(
     videoUri: String,
     viewModel: VideoViewModel = hiltViewModel(),
     soundUiState: SoundUiState,
+    themeColor: ThemeData,
     updateVolume: (String, Int) -> Unit,
     onBackClick: () -> Unit
 ) {
@@ -131,7 +133,6 @@ fun VideoScreen(
                         it.onPause()
                         it.player?.pause()
                     }
-
                     else -> Unit
                 }
             },
@@ -160,7 +161,7 @@ fun VideoScreen(
                         Spacer(modifier = Modifier.weight(1f))
                         IconButton(onClick = { isAudioController = true }) {
                             Icon(
-                                painterResource(R.drawable.baseline_slow_motion_video_24),
+                                painterResource(R.drawable.sound),
                                 null,
                                 modifier = Modifier.size(iconSize),
                                 tint = Color.White
@@ -196,6 +197,7 @@ fun VideoScreen(
                             SoundItem(
                                 modifier = Modifier.size(screenHeightDp2),
                                 sound = sound,
+                                themeColor = themeColor,
                                 circleRadius = screenHeightDp2.value.coerceAtMost(180f),
                                 updateVolume = updateVolume
                             )
