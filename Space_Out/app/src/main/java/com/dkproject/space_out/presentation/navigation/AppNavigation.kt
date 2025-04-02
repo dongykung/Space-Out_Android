@@ -15,7 +15,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -54,6 +57,9 @@ fun AppNavigation(
     audioViewModel: AudioViewModel,
     windowWidthSizeClass: WindowWidthSizeClass
 ) {
+    var isStartedService by rememberSaveable {
+        mutableStateOf(false)
+    }
     val snackBarHostState = remember { SnackbarHostState() }
     val context = LocalContext.current
     val activity = (context as? Activity)
@@ -83,13 +89,17 @@ fun AppNavigation(
         composable<AppDestinations.Screen.Sound> {
             activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                val notificationPermissionState = rememberPermissionState(Manifest.permission.POST_NOTIFICATIONS)
-                LaunchedEffect(notificationPermissionState.status) {
-                    when(notificationPermissionState.status) {
-                        is PermissionStatus.Denied -> { notificationPermissionState.launchPermissionRequest() }
-                        PermissionStatus.Granted -> {
-                            Log.d("NotificationPermission", "Granted")
+                val notificationPermissionState =
+                    rememberPermissionState(Manifest.permission.POST_NOTIFICATIONS)
+                when (notificationPermissionState.status) {
+                    is PermissionStatus.Denied -> {
+                        notificationPermissionState.launchPermissionRequest()
+                    }
+
+                    PermissionStatus.Granted -> {
+                        if (!isStartedService) {
                             context.startForegroundService(Intent(context, AudioService::class.java))
+                            isStartedService = true
                         }
                     }
                 }
@@ -145,7 +155,7 @@ object AppDestinations {
         data object Sound : Screen()
 
         @Serializable
-        data object Splash: Screen()
+        data object Splash : Screen()
 
         @Serializable
         data class Video(val path: String) : Screen()
