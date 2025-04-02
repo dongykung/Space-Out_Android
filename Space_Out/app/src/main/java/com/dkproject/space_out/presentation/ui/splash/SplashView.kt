@@ -35,7 +35,7 @@ fun SplashView(
 ) {
 
     LaunchedEffect(Unit) {
-        delay(1200)
+        delay(800)
         navigateToHome()
     }
     val configuration = LocalConfiguration.current
